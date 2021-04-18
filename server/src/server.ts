@@ -19,6 +19,9 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
+
 app.listen(config.server, () => {
   console.log(`Server running on ${config.server.hostname}:${config.server.port}`)
 })

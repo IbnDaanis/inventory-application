@@ -1,5 +1,9 @@
 node_modules
 .DS_Store
+<<<<<<< HEAD
 build
 .env
 
+=======
+build
+>>>>>>> 5c06b30 (Init)
