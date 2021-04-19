@@ -20,6 +20,15 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
+app.get('/api/categories', async (req, res) => {
+  try {
+    const { rows } = await pool.query('SELECT * FROM category')
+    res.json(rows)
+  } catch (error) {
+    res.status(500).send(error.message)
+  }
+})
+
 app.post('/', async (req, res) => {
   try {
     const { title } = req.body
