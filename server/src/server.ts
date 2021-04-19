@@ -2,6 +2,7 @@ import express from 'express'
 import path from 'path'
 import morgan from 'morgan'
 import { config } from './config/config'
+import {pool }from './config/database'
 
 const app = express()
 
@@ -18,6 +19,16 @@ if (process.env.NODE_ENV === 'production') {
     res.send('API is running')
   })
 }
+
+app.post('/', async (req, res) => {
+  try {
+    const { title } = req.body
+    const newCategory = await pool.query("INSERT INTO category (title) VALUES($1) RETURNING *", [title])
+    res.json(newCategory)
+  } catch (error) {
+    console.error(error)
+  }
+})
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
