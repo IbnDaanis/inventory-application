@@ -8,7 +8,6 @@ export const getCategories = (req: Request, res: Response) => {
     }
     console.log(results.rows)
     res.json(results.rows)
-    pool.end()
   })
 }
 
@@ -23,7 +22,6 @@ export const addCategory = (req: Request, res: Response) => {
       }
       console.log(results.rows)
       res.json(results.rows)
-      pool.end()
     }
   )
 }

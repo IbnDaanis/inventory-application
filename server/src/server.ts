@@ -2,8 +2,8 @@ import express from 'express'
 import path from 'path'
 import morgan from 'morgan'
 import { config } from './config/config'
-import { pool } from './config/database'
 import categories from './routes/categoryRoutes'
+import items from './routes/itemRoutes'
 
 const app = express()
 
@@ -22,6 +22,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.use('/api/categories', categories)
+app.use('/api/items', items)
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))

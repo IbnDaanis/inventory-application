@@ -13,7 +13,7 @@ CREATE TABLE item(
   item_id uuid DEFAULT uuid_generate_v4 (),
   name VARCHAR(100) NOT NULL,
   description TEXT NOT NULL,
-  price INT NOT NULL,
+  price DECIMAL NOT NULL,
   category uuid UNIQUE NOT NULL,
   url VARCHAR(300) NOT NULL,
   stock INT NOT NULL,
