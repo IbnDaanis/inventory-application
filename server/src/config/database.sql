@@ -14,7 +14,7 @@ CREATE TABLE item(
   name VARCHAR(100) NOT NULL,
   description TEXT NOT NULL,
   price DECIMAL NOT NULL,
-  category uuid UNIQUE NOT NULL,
+  category uuid NOT NULL,
   url VARCHAR(300) NOT NULL,
   stock INT NOT NULL,
   PRIMARY KEY (item_id),
