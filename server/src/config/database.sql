@@ -16,3 +16,5 @@ CREATE TABLE item(
   FOREIGN KEY (category) REFERENCES category(category_id)
 )
 
+INSERT INTO item(description, price, stock, item_url, item_name, category)
+VALUES ('Nice headphone', 250, 1000, '', 'Astro A50', 1);
