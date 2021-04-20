@@ -1,20 +1,28 @@
 CREATE DATABASE inventory
 
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
 CREATE TABLE category(
-  category_id SERIAL PRIMARY KEY NOT NULL,
-  title VARCHAR(100) NOT NULL
-)
+  category_id uuid DEFAULT uuid_generate_v4 (),
+  title VARCHAR(100) NOT NULL,
+  description TEXT NOT NULL,
+  PRIMARY KEY (category_id)
+);
 
 CREATE TABLE item(
-  item_id SERIAL PRIMARY KEY NOT NULL,
+  item_id uuid DEFAULT uuid_generate_v4 (),
+  name VARCHAR(100) NOT NULL,
   description TEXT NOT NULL,
   price INT NOT NULL,
+  category uuid UNIQUE NOT NULL,
+  url VARCHAR(300) NOT NULL,
   stock INT NOT NULL,
-  item_url VARCHAR(300) NOT NULL,
-  item_name VARCHAR(100) NOT NULL,
-  category INT NOT NULL,
-  FOREIGN KEY (category) REFERENCES category(category_id)
-)
+  PRIMARY KEY (item_id),
+  FOREIGN KEY (category) REFERENCES category (category_id)
+);
 
-INSERT INTO item(description, price, stock, item_url, item_name, category)
-VALUES ('Nice headphone', 250, 1000, '', 'Astro A50', 1);
+INSERT INTO category(title, description)
+VALUES ('headphone', 'Everyone has one');
+
+INSERT INTO item(name, description, price, category, url, stock)
+VALUES ('Airpods', 'Apple AirPods', 200, '8f24b8c1-69f2-41f1-ba1d-f4f84dd4dc7d', 'url', 1000);
