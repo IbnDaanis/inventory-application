@@ -23,18 +23,6 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use('/api/categories', categories)
 
-app.post('/', async (req, res) => {
-  try {
-    const { title } = req.body
-    const newCategory = await pool.query('INSERT INTO category (title) VALUES($1) RETURNING *', [
-      title
-    ])
-    res.json(newCategory)
-  } catch (error) {
-    res.status(500).send(error.message)
-  }
-})
-
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 

@@ -4,7 +4,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 CREATE TABLE category(
   category_id uuid DEFAULT uuid_generate_v4 (),
-  title VARCHAR(100) NOT NULL,
+  title VARCHAR(100) UNIQUE NOT NULL,
   description TEXT NOT NULL,
   PRIMARY KEY (category_id)
 );
