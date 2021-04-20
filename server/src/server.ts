@@ -3,6 +3,7 @@ import path from 'path'
 import morgan from 'morgan'
 import { config } from './config/config'
 import { pool } from './config/database'
+import categories from './routes/categoryRoutes'
 
 const app = express()
 
@@ -20,17 +21,7 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
-app.get('/api/categories', (_, res) => {
-  pool.query('SELECT * FROM category', (error, results) => {
-    if (error) {
-      res.send(error.message)
-      throw error.message
-    }
-    console.log(results.rows)
-    res.json(results.rows)
-    pool.end()
-  })
-})
+app.use('/api/categories', categories)
 
 app.post('/', async (req, res) => {
   try {
