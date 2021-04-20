@@ -20,13 +20,16 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
-app.get('/api/categories', async (req, res) => {
-  try {
-    const { rows } = await pool.query('SELECT * FROM category')
-    res.json(rows)
-  } catch (error) {
-    res.status(500).send(error.message)
-  }
+app.get('/api/categories', (_, res) => {
+  pool.query('SELECT * FROM category', (error, results) => {
+    if (error) {
+      res.send(error.message)
+      throw error.message
+    }
+    console.log(results.rows)
+    res.json(results.rows)
+    pool.end()
+  })
 })
 
 app.post('/', async (req, res) => {
