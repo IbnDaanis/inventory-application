@@ -34,21 +34,13 @@ export const App = () => {
   }, [])
 
   useEffect(() => {
-    if (!categories) return
-
-    const getItems = async (id: string) => {
-      const { data } = await axios.get(`http://localhost:5000/api/items/category/${id}`)
-      return data
+    const getItems = async () => {
+      const { data } = await axios.get(`http://localhost:5000/api/items`)
+      setItems(data)
     }
 
-    const itemsToAdd: ItemInterface[] = []
-    categories.forEach(async category => {
-      const categoryItems = await getItems(category.category_id)
-      itemsToAdd.push(...categoryItems)
-    })
-
-    setItems(itemsToAdd)
-  }, [categories])
+    getItems()
+  }, [])
 
   useEffect(() => {
     console.log('Items: ', items)
@@ -60,7 +52,10 @@ export const App = () => {
         {categories?.map(category => (
           <div key={category.category_id}>
             <h2>{category.title}</h2>
-            {items && items.map(item => <p key={item.item_id}>{item.name}</p>)}
+            {items &&
+              items
+                .filter(item => item.category === category.category_id)
+                .map(item => <p key={item.item_id}>{item.name}</p>)}
           </div>
         ))}
       </div>
