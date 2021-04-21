@@ -25,6 +25,13 @@ export const addItem = async (req: Request, res: Response) => {
 }
 
 export const deleteItem = async (req: Request, res: Response) => {
+  if (
+    req.headers.authorization &&
+    !req.headers.authorization.startsWith(process.env.DELETE_PASSWORD as string)
+  ) {
+    res.status(401).json('Invalid password')
+    throw new Error('Not authorized.')
+  }
   const itemExists = await pool.query('SELECT * FROM item WHERE item_id=$1', [req.params.id])
   if (!itemExists.rows.length) return res.status(400).json('This item does not exist')
 

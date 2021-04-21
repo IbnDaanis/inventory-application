@@ -37,9 +37,16 @@ export const App = () => {
   }, [items])
 
   const deleteItem = (id: string) => {
+    const prompt = window.prompt('Please enter the Admin Password', 'Enter the password here')
+    const config = {
+      headers: {
+        Authorization: prompt
+      }
+    }
     axios
-      .delete(`http://localhost:5000/api/items/remove/${id}`)
+      .delete(`http://localhost:5000/api/items/remove/${id}`, config)
       .then(async () => setItems(await getItems()))
+      .catch(err => console.log(err.response.data))
   }
 
   return (
