@@ -1,8 +1,8 @@
 import { Request, Response } from 'express'
 import { pool } from '../config/database'
 
-export const getItems = (_: Request, res: Response) => {
-  pool.query('SELECT * FROM item', (error, results) => {
+export const getItems = (req: Request, res: Response) => {
+  pool.query('SELECT * FROM item WHERE category=$1', [req.params.id], (error, results) => {
     if (error) return res.send(error.message)
     res.json(results.rows)
   })
