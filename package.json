@@ -4,7 +4,7 @@
   "description": "Inventory Application",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "concurrently --kill-others-on-fail \"npm run dev --prefix server\" \"npm run start --prefix client\""
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,8 @@
   "homepage": "https://github.com/IbnDaanis/inventory-application#readme",
   "devDependencies": {
     "prettier": "^2.2.1"
+  },
+  "dependencies": {
+    "concurrently": "^6.0.2"
   }
 }
