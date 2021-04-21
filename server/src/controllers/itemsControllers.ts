@@ -25,11 +25,10 @@ export const addItem = async (req: Request, res: Response) => {
 }
 
 export const deleteItem = async (req: Request, res: Response) => {
-  const { id } = req.body
-  const itemExists = await pool.query('SELECT * FROM item WHERE item_id=$1', [id])
+  const itemExists = await pool.query('SELECT * FROM item WHERE item_id=$1', [req.params.id])
   if (!itemExists.rows.length) return res.status(400).json('This item does not exist')
 
-  pool.query('DELETE FROM item where item_id=$1 RETURNING *', [id], (error, results) => {
+  pool.query('DELETE FROM item where item_id=$1 RETURNING *', [req.params.id], (error, results) => {
     if (error) return res.send(error.message)
     res.json({ message: `The item was successfully deleted.`, item: results.rows[0] })
   })

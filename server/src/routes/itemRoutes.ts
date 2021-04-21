@@ -5,6 +5,6 @@ const router = Router()
 
 router.route('/').get(getItems)
 router.route('/add').post(addItem)
-router.route('/remove').delete(deleteItem)
+router.route('/remove/:id').delete(deleteItem)
 
 export default router

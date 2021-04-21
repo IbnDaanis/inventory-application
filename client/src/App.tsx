@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { AddCategoryForm } from './components/AddCategoryForm'
 import { AddItemForm } from './components/AddItemForm'
@@ -35,6 +36,12 @@ export const App = () => {
     console.log('Items: ', items)
   }, [items])
 
+  const deleteItem = (id: string) => {
+    axios
+      .delete(`http://localhost:5000/api/items/remove/${id}`)
+      .then(async () => setItems(await getItems()))
+  }
+
   return (
     <div className="App">
       <div className="categories">
@@ -44,7 +51,12 @@ export const App = () => {
             {items &&
               items
                 .filter(item => item.category === category.category_id)
-                .map(item => <p key={item.item_id}>{item.name}</p>)}
+                .map(item => (
+                  <div key={item.item_id}>
+                    <span>{item.name}</span>
+                    <button onClick={() => deleteItem(item.item_id)}>Delete</button>
+                  </div>
+                ))}
           </div>
         ))}
       </div>
