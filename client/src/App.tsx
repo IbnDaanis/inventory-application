@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { AddCategoryForm } from './components/AddCategoryForm'
+import { AddItemForm } from './components/AddItemForm'
 import { getData, getItems } from './utils/apiRequests'
 
 export interface CategoryInterface {
@@ -8,7 +9,7 @@ export interface CategoryInterface {
   description: string
 }
 
-interface ItemInterface {
+export interface ItemInterface {
   item_id: string
   name: string
   description: string
@@ -47,6 +48,7 @@ export const App = () => {
           </div>
         ))}
       </div>
+      <AddItemForm categories={categories} setItems={setItems} />
       <AddCategoryForm setCategories={setCategories} />
     </div>
   )
