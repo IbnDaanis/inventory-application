@@ -11,10 +11,10 @@ interface AddItemFormProps {
 export const AddItemForm = ({ categories, setItems }: AddItemFormProps) => {
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
-  const [price, setPrice] = useState(0)
+  const [price, setPrice] = useState<string | number>(0)
   const [category, setCategory] = useState('')
   const [url, setUrl] = useState('')
-  const [stock, setStock] = useState(0)
+  const [stock, setStock] = useState<string | number>(0)
 
   const addCategory = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
@@ -62,7 +62,7 @@ export const AddItemForm = ({ categories, setItems }: AddItemFormProps) => {
           type="number"
           id="price"
           value={price}
-          onChange={({ target }) => setPrice(+target.value)}
+          onChange={({ target }) => setPrice(target.value)}
           required
         />
         <label htmlFor="url">Url:</label>
@@ -91,7 +91,7 @@ export const AddItemForm = ({ categories, setItems }: AddItemFormProps) => {
           type="number"
           id="stock"
           value={stock}
-          onChange={({ target }) => setStock(+target.value)}
+          onChange={({ target }) => setStock(target.value)}
           required
         />
         <button type="submit">Add Item</button>
