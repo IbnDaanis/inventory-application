@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { AddCategoryForm } from './components/AddCategoryForm'
 
 interface CategoryInterface {
   category_id: string
@@ -17,28 +18,25 @@ interface ItemInterface {
   stock: number
 }
 
-// interface ItemsInterface {
-//   [key: string]: ItemInterface[]
-// }
-
 export const App = () => {
   const [categories, setCategories] = useState<CategoryInterface[] | null>(null)
   const [items, setItems] = useState<ItemInterface[] | null>(null)
 
+  const getData = async () => {
+    const { data } = await axios.get('http://localhost:5000/api/categories')
+    setCategories(data)
+  }
+
+  const getItems = async () => {
+    const { data } = await axios.get(`http://localhost:5000/api/items`)
+    setItems(data)
+  }
+
   useEffect(() => {
-    const getData = async () => {
-      const { data } = await axios.get('http://localhost:5000/api/categories')
-      setCategories(data)
-    }
     getData()
   }, [])
 
   useEffect(() => {
-    const getItems = async () => {
-      const { data } = await axios.get(`http://localhost:5000/api/items`)
-      setItems(data)
-    }
-
     getItems()
   }, [])
 
@@ -59,6 +57,7 @@ export const App = () => {
           </div>
         ))}
       </div>
+      <AddCategoryForm />
     </div>
   )
 }
