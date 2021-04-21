@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
 import { AddCategoryForm } from './components/AddCategoryForm'
 import { getData, getItems } from './utils/apiRequests'
 
-interface CategoryInterface {
+export interface CategoryInterface {
   category_id: string
   title: string
   description: string
@@ -48,7 +47,7 @@ export const App = () => {
           </div>
         ))}
       </div>
-      <AddCategoryForm />
+      <AddCategoryForm setCategories={setCategories} />
     </div>
   )
 }

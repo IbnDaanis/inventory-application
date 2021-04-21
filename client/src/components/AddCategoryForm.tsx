@@ -1,13 +1,21 @@
 import React, { FormEvent, useState } from 'react'
 import axios from 'axios'
+import { CategoryInterface } from '../App'
+import { getData } from '../utils/apiRequests'
 
-export const AddCategoryForm = () => {
+export const AddCategoryForm = ({
+  setCategories
+}: {
+  setCategories: React.Dispatch<React.SetStateAction<CategoryInterface[] | null>>
+}) => {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
 
   const addCategory = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
-    axios.post('http://localhost:5000/api/categories/add', { title, description })
+    axios
+      .post('http://localhost:5000/api/categories/add', { title, description })
+      .then(async () => setCategories(await getData()))
     setTitle('')
     setDescription('')
   }
