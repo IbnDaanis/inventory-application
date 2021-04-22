@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { AddCategoryForm, AddItemForm } from './components'
+import { AddCategoryForm, AddItemForm, Header } from './components'
 import { getData, getItems } from './utils/apiRequests'
-import { Header } from './components/Header/Header'
 
 export interface CategoryInterface {
   category_id: string

@@ -1,2 +1,5 @@
 export { AddCategoryForm } from './AddCategoryForm/AddCategoryForm'
 export { AddItemForm } from './AddItemForm/AddItemForm'
+export { Category } from './Category/Category'
+export { CategoryContainer } from './CategoryContainer/CategoryContainer'
+export { Header } from './Header/Header'
