@@ -16,6 +16,11 @@ html {
   scroll-behavior: smooth;
 }
 
+body{
+  background: rgb(20, 20, 20);
+  color: white;
+}
+
 a {
   text-decoration: none;
   color: unset;

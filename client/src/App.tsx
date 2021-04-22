@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { AddCategoryForm, AddItemForm } from './components'
 import { getData, getItems } from './utils/apiRequests'
+import { Header } from './components/Header/Header'
 
 export interface CategoryInterface {
   category_id: string
@@ -49,25 +50,28 @@ export const App = () => {
   }
 
   return (
-    <div className="App">
-      <div className="categories">
-        {categories?.map(category => (
-          <div key={category.category_id}>
-            <h2>{category.title}</h2>
-            {items &&
-              items
-                .filter(item => item.category === category.category_id)
-                .map(item => (
-                  <div key={item.item_id}>
-                    <span>{item.name}</span>
-                    <button onClick={() => deleteItem(item.item_id)}>Delete</button>
-                  </div>
-                ))}
-          </div>
-        ))}
+    <>
+      <Header />
+      <div>
+        <div>
+          {categories?.map(category => (
+            <div key={category.category_id}>
+              <h2>{category.title}</h2>
+              {items &&
+                items
+                  .filter(item => item.category === category.category_id)
+                  .map(item => (
+                    <div key={item.item_id}>
+                      <span>{item.name}</span>
+                      <button onClick={() => deleteItem(item.item_id)}>Delete</button>
+                    </div>
+                  ))}
+            </div>
+          ))}
+        </div>
+        <AddItemForm categories={categories} setItems={setItems} />
+        <AddCategoryForm setCategories={setCategories} />
       </div>
-      <AddItemForm categories={categories} setItems={setItems} />
-      <AddCategoryForm setCategories={setCategories} />
-    </div>
+    </>
   )
 }
