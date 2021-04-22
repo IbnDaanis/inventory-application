@@ -1,7 +1,7 @@
 import React, { FormEvent, useState } from 'react'
 import axios from 'axios'
-import { CategoryInterface } from '../App'
-import { getData } from '../utils/apiRequests'
+import { CategoryInterface } from '../../App'
+import { getData } from '../../utils/apiRequests'
 
 export const AddCategoryForm = ({
   setCategories

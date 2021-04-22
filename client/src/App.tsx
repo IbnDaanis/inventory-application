@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { AddCategoryForm } from './components/AddCategoryForm'
-import { AddItemForm } from './components/AddItemForm'
+import { AddCategoryForm, AddItemForm } from './components'
 import { getData, getItems } from './utils/apiRequests'
 
 export interface CategoryInterface {
