@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { ItemInterface } from '../../App'
-import { getItems } from '../../utils/apiRequests'
+import { getItems } from '../../utils/useGetData'
 import { CategoryItem, DeleteButton, ItemTitle } from './CategoryStyles'
 
 interface CategoryInterface {

@@ -1,7 +1,7 @@
 import React, { FormEvent, useState } from 'react'
 import axios from 'axios'
 import { CategoryInterface } from '../../App'
-import { getData } from '../../utils/apiRequests'
+import { getCategories } from '../../utils/useGetData'
 
 export const AddCategoryForm = ({
   setCategories
@@ -15,7 +15,7 @@ export const AddCategoryForm = ({
     event.preventDefault()
     axios
       .post('http://localhost:5000/api/categories/add', { title, description })
-      .then(async () => setCategories(await getData()))
+      .then(async () => setCategories(await getCategories()))
     setTitle('')
     setDescription('')
   }

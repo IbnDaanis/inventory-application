@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { AddCategoryForm, AddItemForm, CategoryContainer, Header } from './components'
-import { getData, getItems } from './utils/apiRequests'
+import { useGetCategories, useGetItems } from './utils/useGetData'
 
 export interface CategoryInterface {
   category_id: string
@@ -19,20 +19,8 @@ export interface ItemInterface {
 }
 
 export const App = () => {
-  const [categories, setCategories] = useState<CategoryInterface[] | null>(null)
-  const [items, setItems] = useState<ItemInterface[] | null>(null)
-
-  useEffect(() => {
-    ;(async () => setCategories(await getData()))()
-  }, [])
-
-  useEffect(() => {
-    ;(async () => setItems(await getItems()))()
-  }, [])
-
-  useEffect(() => {
-    console.log('Items: ', items)
-  }, [items])
+  const { categories, setCategories } = useGetCategories()
+  const { items, setItems } = useGetItems()
 
   return (
     <>

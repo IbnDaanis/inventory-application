@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { FormEvent, useState } from 'react'
 import { ItemInterface, CategoryInterface } from '../../App'
-import { getItems } from '../../utils/apiRequests'
+import { getItems } from '../../utils/useGetData'
 
 interface AddItemFormProps {
   categories: CategoryInterface[] | null
