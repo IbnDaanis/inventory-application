@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { ItemInterface } from '../../App'
 import { getItems } from '../../utils/apiRequests'
+import { CategoryItem, DeleteButton, ItemTitle } from './CategoryStyles'
 
 interface CategoryInterface {
   item: ItemInterface
@@ -23,9 +24,10 @@ export const Category = ({ item, setItems }: CategoryInterface) => {
   }
 
   return (
-    <div key={item.item_id}>
-      <span>{item.name}</span>
-      <button onClick={() => deleteItem(item.item_id)}>Delete</button>
-    </div>
+    <CategoryItem key={item.item_id}>
+      <ItemTitle>{item.name}</ItemTitle>
+      <ItemTitle>£{parseFloat(item.price.toString()).toFixed(2)}</ItemTitle>
+      <DeleteButton onClick={() => deleteItem(item.item_id)}>Delete</DeleteButton>
+    </CategoryItem>
   )
 }

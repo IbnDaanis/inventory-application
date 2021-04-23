@@ -37,11 +37,13 @@ export const App = () => {
   return (
     <>
       <Header />
-      <div>
-        <CategoryContainer categories={categories} items={items} setItems={setItems} />
-        <AddItemForm categories={categories} setItems={setItems} />
-        <AddCategoryForm setCategories={setCategories} />
-      </div>
+      {categories && categories.length && items && items.length && (
+        <>
+          <CategoryContainer categories={categories} items={items} setItems={setItems} />
+          <AddItemForm categories={categories} setItems={setItems} />
+          <AddCategoryForm setCategories={setCategories} />
+        </>
+      )}
     </>
   )
 }

@@ -18,7 +18,7 @@ export const CategoryContainer = ({ categories, items, setItems }: CategoryConta
           {items &&
             items
               .filter(item => item.category === category.category_id)
-              .map(item => <Category item={item} setItems={setItems} />)}
+              .map(item => <Category key={item.item_id} item={item} setItems={setItems} />)}
         </CategoryItem>
       ))}
     </CategoryWrapper>
