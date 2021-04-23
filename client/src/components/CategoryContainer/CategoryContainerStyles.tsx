@@ -4,12 +4,9 @@ export const CategoryWrapper = styled.section`
   display: flex;
   flex-direction: column;
   width: 1000px;
+  max-width: 95%;
   height: 100%;
   margin: 0 auto;
-
-  @media (max-width: 1010px) {
-    padding: 0 10px;
-  }
 `
 export const CategoryItem = styled.div`
   display: flex;

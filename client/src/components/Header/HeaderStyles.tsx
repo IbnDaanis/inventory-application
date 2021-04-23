@@ -8,14 +8,11 @@ export const HeaderWrapper = styled.header`
 
 export const HeaderContainer = styled.nav`
   width: 1000px;
+  max-width: 95%;
   height: 100%;
   margin: 0 auto;
   display: flex;
   align-items: center;
-
-  @media (max-width: 1010px) {
-    padding: 0 10px;
-  }
 `
 
 export const HeaderTitle = styled.h1`
