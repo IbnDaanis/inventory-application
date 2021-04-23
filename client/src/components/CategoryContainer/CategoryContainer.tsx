@@ -1,6 +1,7 @@
 import React from 'react'
 import { CategoryInterface, ItemInterface } from '../../App'
 import { Category } from '../Category/Category'
+import { CategoryItem, CategoryTitle, CategoryWrapper } from './CategoryContainerStyles'
 
 interface CategoryContainerInterface {
   categories: CategoryInterface[] | null
@@ -10,16 +11,16 @@ interface CategoryContainerInterface {
 
 export const CategoryContainer = ({ categories, items, setItems }: CategoryContainerInterface) => {
   return (
-    <div>
+    <CategoryWrapper>
       {categories?.map(category => (
-        <div key={category.category_id}>
-          <h2>{category.title}</h2>
+        <CategoryItem key={category.category_id}>
+          <CategoryTitle>{category.title}</CategoryTitle>
           {items &&
             items
               .filter(item => item.category === category.category_id)
               .map(item => <Category item={item} setItems={setItems} />)}
-        </div>
+        </CategoryItem>
       ))}
-    </div>
+    </CategoryWrapper>
   )
 }
