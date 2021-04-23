@@ -2,6 +2,7 @@ import React, { FormEvent, useState } from 'react'
 import axios from 'axios'
 import { CategoryInterface } from '../../App'
 import { getCategories } from '../../utils/useGetData'
+import { AddCategoryWrapper } from './AddCategoryFormStyles'
 
 export const AddCategoryForm = ({
   setCategories
@@ -20,7 +21,7 @@ export const AddCategoryForm = ({
     setDescription('')
   }
   return (
-    <div>
+    <AddCategoryWrapper>
       <form onSubmit={addCategory}>
         <label htmlFor="title">Title:</label>
         <input
@@ -40,6 +41,6 @@ export const AddCategoryForm = ({
         />
         <button type="submit">Add Category</button>
       </form>
-    </div>
+    </AddCategoryWrapper>
   )
 }
