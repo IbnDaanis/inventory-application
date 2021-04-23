@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { FormEvent, useState } from 'react'
 import { ItemInterface, CategoryInterface } from '../../App'
 import { getItems } from '../../utils/useGetData'
+import { AddItemWrapper } from './AddItemFormStyles'
 
 interface AddItemFormProps {
   categories: CategoryInterface[] | null
@@ -39,7 +40,7 @@ export const AddItemForm = ({ categories, setItems }: AddItemFormProps) => {
     setStock(0)
   }
   return (
-    <div>
+    <AddItemWrapper>
       <form onSubmit={addCategory}>
         <label htmlFor="name">Name:</label>
         <input
@@ -96,6 +97,6 @@ export const AddItemForm = ({ categories, setItems }: AddItemFormProps) => {
         />
         <button type="submit">Add Item</button>
       </form>
-    </div>
+    </AddItemWrapper>
   )
 }
