@@ -1,8 +1,9 @@
-import axios from 'axios'
 import React, { FormEvent, useState } from 'react'
+import axios from 'axios'
+import { createPortal } from 'react-dom'
 import { ItemInterface, CategoryInterface } from '../../App'
 import { getItems } from '../../utils/useGetData'
-import { AddItemWrapper } from './AddItemFormStyles'
+import { AddItemWrapper, AddItemFormEl } from './AddItemFormStyles'
 
 interface AddItemFormProps {
   categories: CategoryInterface[] | null
@@ -39,9 +40,9 @@ export const AddItemForm = ({ categories, setItems }: AddItemFormProps) => {
     setUrl('')
     setStock(0)
   }
-  return (
+  return createPortal(
     <AddItemWrapper>
-      <form onSubmit={addCategory}>
+      <AddItemFormEl onSubmit={addCategory}>
         <label htmlFor="name">Name:</label>
         <input
           type="text"
@@ -96,7 +97,8 @@ export const AddItemForm = ({ categories, setItems }: AddItemFormProps) => {
           required
         />
         <button type="submit">Add Item</button>
-      </form>
-    </AddItemWrapper>
+      </AddItemFormEl>
+    </AddItemWrapper>,
+    document.getElementById('root') as HTMLDivElement
   )
 }
