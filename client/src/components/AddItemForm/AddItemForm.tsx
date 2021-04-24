@@ -64,6 +64,7 @@ export const AddItemForm = ({ categories, setItems }: AddItemFormProps) => {
           type="number"
           id="price"
           value={price}
+          step="0.01"
           onChange={({ target }) => setPrice(target.value)}
           required
         />
